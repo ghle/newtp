@@ -28,3 +28,6 @@ Route::delete('delete/:id','Index/delete_art');
 
 // 修改文章
 Route::put('update', 'Index/update_art');
+
+/***************************在线报名/注册******************************/
+Route::post('Register','Register/register');

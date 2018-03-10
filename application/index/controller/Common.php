@@ -13,7 +13,15 @@ class Common extends Controller
     protected $validater; 
     protected $params; 
     protected $rules=array(
+            'Register'=>array(
+                'register'=>array(
+                    'name'=>'require|chsDash',
+                    'tel' =>'require',
+                    'babyname'=>'require',
+                    'babyage' =>'require'
+                ),
 
+            ),
             'Category'=>array(
                 'lists_category'=>array(
                     
