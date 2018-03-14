@@ -1,0 +1,16 @@
+<?php
+
+namespace app\Index\controller;
+
+
+class Articlelist extends Common
+{
+	public function articlelist()
+	{
+		return $this->fetch();
+	}
+
+}
+
+
+?>

@@ -5,33 +5,60 @@ namespace app\index\controller;
 class Index extends  Common
 {
 	
+
+	public function index()
+	{
+		return $this->fetch();
+	}
+
+
+	
+
     public function lists_art()
     {
-    	$param=$this->params;
+    	
+	    if ($this->request->isAjax()) {
 
-    	$field='tittle,content,author,ltittle,linfo';
 
-		$res=db('article')->alias('a')->field($field)
-						  ->join('list l', 'l.lid = a.alid')
-						  ->select();
+		    	$param=$this->params;
 
-    	if ($res) {
-    		$this->return_msg(200,'查询成功',$res);
-    	}else{
-    		$this->return_msg(400,'查询失败');
-    	}  
+		    	$field='tittle,content,author,ltittle,linfo,alid,id';
+
+				$res=db('article')->alias('a')->field($field)
+								  ->join('list l', 'l.lid = a.alid')
+								  ->select();
+		    	if ($res) {
+		    		$this->return_msg(200,'查询成功',$res);
+		    	}else{
+		    		$this->return_msg(400,'查询失败');
+		    	}
+	   	} else{
+	   		return $this->fetch('lists_art');
+	   	}
     }
+
 
     public function add_art()
     {
-    	$param=$this->params;
     	
-    	$res=db('article')->insertGetid($param);
-    	if ($res) {
-    		$this->return_msg(200,'添加文章成功',$res);
+		if ($this->request->isPost()) {
+
+    		
+    		$param=$this->params; 
+    	
+    		$art_param=$this->request->except('linfo');
+
+	    	$ares=db('article')->insertGetid($art_param);
+
+	    	if ($ares) {
+	    		 $this->return_msg(200,'添加文章成功',$ares);
+	    	}else{
+	    		 $this->return_msg(400,'添加文章失败');
+	    	}
     	}else{
-    		$this->return_msg(400,'添加文章失败');
+    		return $this->fetch('add_art');
     	}
+    	
     }
 
     /**
@@ -41,7 +68,7 @@ class Index extends  Common
 	public function delete_art()
 	{
 		$param=$this->params;
-
+			
 		$res=db('article')->where('id',$param['id'])->delete();
 		if ($res) {
 			$this->return_msg(200,'删除文章成功');

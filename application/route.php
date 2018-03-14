@@ -2,6 +2,9 @@
 use think\Route;
 
 
+/****************************后台首页****************************/
+
+
 /********************栏目管理*************************************/
  
 // 所有栏目
@@ -24,7 +27,7 @@ Route::get('list','Index/lists_art');
 Route::post('add','Index/add_art');
 
 // 删除文章
-Route::delete('delete/:id','Index/delete_art');
+Route::delete('delete','Index/delete_art');
 
 // 修改文章
 Route::put('update', 'Index/update_art');

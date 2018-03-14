@@ -13,6 +13,8 @@ class Common extends Controller
     protected $validater; 
     protected $params; 
     protected $rules=array(
+
+           
             'Register'=>array(
                 'register'=>array(
                     'name'=>'require|chsDash',
@@ -20,7 +22,6 @@ class Common extends Controller
                     'babyname'=>'require',
                     'babyage' =>'require'
                 ),
-
             ),
             'Category'=>array(
                 'lists_category'=>array(
@@ -43,14 +44,17 @@ class Common extends Controller
     				
     			),
     			'add_art'=>array(
-
+                    
     			),
     			'delete_art'=>array(
     				'id'=>'require',
     			),
     			'update_art'=>array(
     				'id'=>'require',
-    			)
+    			),
+                'index'=>array(
+
+                ),
     		)
     );
 	 protected function _initialize()
