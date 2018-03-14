@@ -103,7 +103,7 @@ $(function(){
 				url:'http://localhost/newtp5/public/list',
 				dataType:'json',
 				success:function (res) {
-					console.log(res);
+					// console.log(res);
 					
 					for (var i=0; i<res.data.length;i++) {
 						str='';
@@ -136,16 +136,16 @@ $(function(){
 
 					success:function (res) {
 						var a=JSON.parse(res);
-						console.log(a);
+						// console.log(a);
 							if(a.code==200){
 								alert(a.msg);
 								var index=parent.layer.getFrameIndex(window.name);
-
+								 window.location.reload()
 								parent.layer.close(index);
 							}
 					},
 					error:function (res) {
-						console.log(res);
+						
 						console.log('参数不全');
 					},
 

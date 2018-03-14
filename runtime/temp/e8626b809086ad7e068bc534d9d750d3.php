@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:76:"D:\phpStudy\WWW\newtp5\public/../application/index\view\index\lists_art.html";i:1521008665;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:76:"D:\phpStudy\WWW\newtp5\public/../application/index\view\index\lists_art.html";i:1521008727;}*/ ?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -120,7 +120,7 @@ function admin_del(obj,id){
 			type: 'delete',
 			url: 'http://localhost/newtp5/public/delete',
 			data:{
-				id:id,
+					id:id,//左边的id是数据库中的字段  右边是传过来的 参数值
 			},
 			dataType: 'json',
 			success: function(data){

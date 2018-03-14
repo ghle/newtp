@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:74:"D:\phpStudy\WWW\newtp5\public/../application/index\view\index\add_art.html";i:1521006065;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:74:"D:\phpStudy\WWW\newtp5\public/../application/index\view\index\add_art.html";i:1521008971;}*/ ?>
 <!--_meta 作为公共模版分离出去-->
 <!DOCTYPE HTML>
 <html>
@@ -108,7 +108,7 @@ $(function(){
 					
 					for (var i=0; i<res.data.length;i++) {
 						str='';
-						
+
 						str+='<option value="'+res.data[i].alid+'">'+res.data[i].ltittle+'</option>';
 						
 						$('.select').append(str);
@@ -131,8 +131,6 @@ $(function(){
 								author:$('#authors').val(),
 								alid:$('.select').val(),
 								linfo:$('#articletitle2').val()
-
-								
 					},
 					async:true,
 					datatype:'json',
@@ -143,7 +141,7 @@ $(function(){
 							if(a.code==200){
 								alert(a.msg);
 								var index=parent.layer.getFrameIndex(window.name);
-
+								 window.location.reload()
 								parent.layer.close(index);
 							}
 					},
