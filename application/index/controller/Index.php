@@ -83,14 +83,23 @@ class Index extends  Common
 	 */
 	public function update_art()
 	{
-		$param=$this->params;
-	
-		$res=db('article')->update($param);
-		if ($res) {
-				$this->return_msg(200,'修改章成功');
-		}else{
-				$this->return_msg(400,'修改文章失败');
-		}
+		
+			if ($this->request->isPut()) {
+
+				$param=$this->params;
+
+				$res=db('article')->where('id',$param['id'])->update($param);
+				if ($res) {
+						$this->return_msg(200,'修改章成功');
+				}else{
+						$this->return_msg(400,'修改文章失败');
+				}
+			}else{
+
+					return $this->fetch('update_art');
+			}
+			
+		
 	}
 
 

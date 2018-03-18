@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:76:"D:\phpStudy\WWW\newtp5\public/../application/index\view\index\lists_art.html";i:1521008727;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:76:"D:\phpStudy\WWW\newtp5\public/../application/index\view\index\lists_art.html";i:1521118649;}*/ ?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -63,14 +63,6 @@
 <script type="text/javascript" src="/newtp5/public/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
 <script type="text/javascript" src="/newtp5/public/lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript">
-/*
-	参数解释：
-	title	标题
-	url		请求的url
-	id		需要操作的数据id
-	w		弹出层宽度（缺省调默认值）
-	h		弹出层高度（缺省调默认值）
-*/
 
 $(function () {
 	$.ajax({
@@ -79,25 +71,25 @@ $(function () {
 		dataType:'json',
 		success:function (res) {
 			console.log(res);
-				for (var i=0; i<res.data.length;i++) {
-					var str='';
-					str+='<tr class="text-c"><td><input type="checkbox" value="1" name=""></td>';
+		for (var i=0; i<res.data.length;i++) {
+			var str='';
+			str+='<tr class="text-c"><td><input type="checkbox" value="1" name=""></td>';
 
-					str+='<td>'+res.data[i].id+'</td>';
+			str+='<td>'+res.data[i].id+'</td>';
 
-					str+='<td>'+res.data[i].tittle+'</td><td>'+res.data[i].content.substr(0,10)+'</td><td>'+res.data[i].author+'</td><td>'+res.data[i].linfo+'</td><td>'+res.data[i].ltittle+'</td>';
+			str+='<td>'+res.data[i].tittle+'</td><td>'+res.data[i].content.substr(0,10)+'</td><td>'+res.data[i].author+'</td><td>'+res.data[i].linfo+'</td><td>'+res.data[i].ltittle+'</td>';
 
-					str+='<td class="td-status"><span class="label label-success radius">已启用</span></td>';
+			str+='<td class="td-status"><span class="label label-success radius">已启用</span></td>';
 
-					str+='<td class="td-manage">';
+			str+='<td class="td-manage">';
 
-					str+='<a style="text-decoration:none" onClick="admin_stop(this,'+'\'10001\' '+ ')" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a>';
-					str+=' <a title="编辑" href="javascript:;" onclick="admin_edit('+'\'管理员编辑\''+','+'\'<?php echo url('add_art'); ?>\''+','+'\'1\''+','+'\'500\''+','+'\'500\''+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> ';
-					str+='<a title="删除" href="javascript:;" onclick="admin_del(this,'+'\''+res.data[i].id+'\''+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td></tr>';
-									
-					$('#li').append(str);
+			str+='<a style="text-decoration:none" onClick="admin_stop(this,'+'\'10001\' '+ ')" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a>';
+			str+=' <a title="编辑" href="javascript:;" onclick="admin_edit('+'\'管理员编辑\''+','+'\'<?php echo url('update_art'); ?>\''+','+'\''+res.data[i].id+'\''+','+'\'500\''+','+'\'500\''+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> ';
+			str+='<a title="删除" href="javascript:;" onclick="admin_del(this,'+'\''+res.data[i].id+'\''+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td></tr>';
+							
+			$('#li').append(str);
 
-				}
+			}
 		},
 		error:function (res) {
 			console.log(res);
@@ -113,7 +105,12 @@ $(function () {
 function admin_add(title,url,w,h){
 	layer_show(title,url,w,h);
 }
-/*管理员-删除*/
+
+
+/**
+ * 文章删除
+ */
+
 function admin_del(obj,id){
 	layer.confirm('确认要删除吗？',function(index){
 		$.ajax({
@@ -124,7 +121,7 @@ function admin_del(obj,id){
 			},
 			dataType: 'json',
 			success: function(data){
-				console.log(data);
+				// console.log(data);
 				// $(obj).parents("tr").remove();
 				 window.location.reload()
 				layer.msg('已删除!',{icon:1,time:1000});
@@ -139,7 +136,28 @@ function admin_del(obj,id){
 
 /*管理员-编辑*/
 function admin_edit(title,url,id,w,h){
+	
 	layer_show(title,url,w,h);
+			// $.ajax({
+			// 	type:'GET',
+			// 	url:'http://localhost/newtp5/public/list',
+
+			// 	dataType:'json',
+			// 	success:function (res) {
+			// 		for (var i = 0; i < res.data.length; i++) {
+			// 			if (id==res.data[i].id) {
+			// 				console.log(res.data[i].tittle);
+			// 				console.log(res.data[i].linfo);
+			// 				break;
+			// 			}
+			// 		}
+			// 	},
+			// 	error:function (res) {
+			// 		console.log(res);
+			// 	}
+			// })
+			
+		
 }
 /*管理员-停用*/
 function admin_stop(obj,id){

@@ -50,7 +50,7 @@ class Common extends Controller
     				'id'=>'require',
     			),
     			'update_art'=>array(
-    				'id'=>'require',
+    				
     			),
                 'index'=>array(
 
